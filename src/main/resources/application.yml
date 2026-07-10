@@ -2,7 +2,7 @@ spring:
   application:
     name: tomopet
   datasource:
-    url: jdbc:mysql://reseau.proxy.rlwy.net:22300/railway
+    url: jdbc:mysql://reseau.proxy.rlwy.net:22300/tomopet
     username: root
     password: ZCYJRFsgHRngriYQegjWRDgmPtSbcwiJ
     driver-class-name: com.mysql.cj.jdbc.Driver
