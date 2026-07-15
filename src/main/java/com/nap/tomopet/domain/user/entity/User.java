@@ -5,6 +5,10 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
@@ -17,30 +21,58 @@ public class User {
     @Column(name = "user_id")
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 50)
+    @Column(unique = true, length = 30)
+    private String username;
+
+    @Column(unique = true, length = 50)
     private String email;
 
-    @Column(nullable = false, length = 100)
+    @Column(length = 100)
     private String password;
 
     @Column(nullable = false, length = 20)
     private String nickname;
 
+    @Column(name = "profile_img", length = 255)
+    private String profileImg;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private UserRole role;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private UserStatus status;
+
+    @CreationTimestamp
+    @Column(name = "created_at", nullable = false, updatable = false)
+    private LocalDateTime createdAt;
+
+    @UpdateTimestamp
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
+
     @Builder
-    public User(String email, String password, String nickname, UserRole role) {
+    public User(String username, String email, String password, String nickname, String profileImg,
+                UserRole role, UserStatus status) {
+        this.username = username;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
+        this.profileImg = profileImg;
         this.role = role != null ? role : UserRole.USER ;
+        this.status = status != null ?status : UserStatus.ACTIVE;
     }
 
-    public void updateNickname(String newNickname) {
-        this.nickname = newNickname;
+    public void updateProfile(String nickname, String profileImg) {
+        this.nickname = nickname;
+        this.profileImg = profileImg;
     }
+
+    public void updateStatus(UserStatus status) {
+        this.status = status;
+    }
+
     public void updatePassword(String newPassword) {
         this.password = newPassword;
     }
