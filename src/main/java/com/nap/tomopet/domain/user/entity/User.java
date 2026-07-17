@@ -53,13 +53,12 @@ public class User {
     private LocalDateTime updatedAt;
 
     @Builder
-    public User(String username, String email, String password, String nickname, String profileImg,
+    public User(String username, String email, String password, String nickname,
                 UserRole role, UserStatus status) {
         this.username = username;
         this.email = email;
         this.password = password;
         this.nickname = nickname;
-        this.profileImg = profileImg;
         this.role = role != null ? role : UserRole.USER ;
         this.status = status != null ?status : UserStatus.ACTIVE;
     }
