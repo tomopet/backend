@@ -6,12 +6,16 @@ spring:
     username: root
     password: ZCYJRFsgHRngriYQegjWRDgmPtSbcwiJ
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+
 logging:
   level:
     root: info
     org.springframework.web: debug
+
+jwt:
+  secret: c3ByaW5nLWJvb3Qtc2VjdXJpdHktand0LXNlY3JldC1rZXktZm9yLXRvbW9wZXQtcHJvamVjdC1zZWNyZXQ=
+  expiration-time: 3600000
