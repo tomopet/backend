@@ -1,7 +1,7 @@
 package com.nap.tomopet.domain.auth.controller;
 
-import com.nap.tomopet.domain.user.dto.LoginRequestDto;
-import com.nap.tomopet.domain.user.dto.SignupRequestDto;
+import com.nap.tomopet.domain.auth.dto.LoginRequestDto;
+import com.nap.tomopet.domain.auth.dto.SignupRequestDto;
 import com.nap.tomopet.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
