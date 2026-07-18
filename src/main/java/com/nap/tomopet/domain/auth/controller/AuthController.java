@@ -1,5 +1,6 @@
 package com.nap.tomopet.domain.auth.controller;
 
+import com.nap.tomopet.domain.user.dto.LoginRequestDto;
 import com.nap.tomopet.domain.user.dto.SignupRequestDto;
 import com.nap.tomopet.domain.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -26,5 +27,11 @@ public class AuthController {
                 requestDto.getNickname()
         );
         return ResponseEntity.ok("회원가입 성공");
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequestDto requestDto) {
+        String result = userService.login(requestDto.getUsername(), requestDto.getPassword());
+        return ResponseEntity.ok(result);
     }
 }
