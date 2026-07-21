@@ -24,7 +24,7 @@ public class Post {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User userId;
 
     @Column(nullable = false, length = 100)
     private String title;
@@ -50,13 +50,19 @@ public class Post {
     private LocalDateTime updatedAt;
 
     @Builder
-    public Post(User user, String title, String content, String imageUrl, Integer viewCount, Integer likeCount) {
-        this.user = user;
+    public Post(User userId, String title, String content, String imageUrl, Integer viewCount, Integer likeCount) {
+        this.userId = userId;
         this.title = title;
         this.content = content;
         this.imageUrl = imageUrl;
         this.viewCount = viewCount != null ? viewCount : 0;
         this.likeCount = likeCount != null ? likeCount : 0;
+    }
+
+    public void update(String title, String content, String imageUrl) {
+        this.title = title;
+        this.content = content;
+        this.imageUrl = imageUrl;
     }
 
     public void increaseViewCount() {

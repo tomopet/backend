@@ -27,15 +27,15 @@ public class PostLike {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private User userId;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @Builder
-    public PostLike(Post post, User user) {
+    public PostLike(Post post, User userId) {
         this.post = post;
-        this.user = user;
+        this.userId = userId;
     }
 }
