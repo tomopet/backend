@@ -6,6 +6,21 @@ spring:
     username: root
     password: ZCYJRFsgHRngriYQegjWRDgmPtSbcwiJ
     driver-class-name: com.mysql.cj.jdbc.Driver
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: 본인이메일@gmail.com
+    password: 구글_앱_비밀번호  # ⚠️ 로그인 비밀번호가 아니라 구글에서 발급받은 '앱 비밀번호' 16자리입니다!
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
+          connectiontimeout: 5000
+          timeout: 5000
+          writetimeout: 5000
   jpa:
     hibernate:
       ddl-auto: update
