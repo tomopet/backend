@@ -2,15 +2,15 @@ spring:
   application:
     name: tomopet
   datasource:
-    url: jdbc:mysql://reseau.proxy.rlwy.net:22300/tomopet
-    username: root
-    password: ZCYJRFsgHRngriYQegjWRDgmPtSbcwiJ
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://mysql-271f33ab-rtg20051117-a9c7.d.aivencloud.com:20787/tomopet?sslMode=REQUIRED
+    username: avnadmin
+    password: ${AIVEN_PASSWORD:your_password_here}
   mail:
     host: smtp.gmail.com
     port: 587
-    username: 본인이메일@gmail.com
-    password: 구글_앱_비밀번호  # ⚠️ 로그인 비밀번호가 아니라 구글에서 발급받은 '앱 비밀번호' 16자리입니다!
+    username: ksh051371@ync.ac.kr
+    password: ${AIVEN_PASSWORD:your_password_here}
     properties:
       mail:
         smtp:
