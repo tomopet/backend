@@ -1,5 +1,6 @@
 package com.nap.tomopet.global.security.jwt;
 
+import com.nap.tomopet.domain.user.entity.UserRole;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import io.jsonwebtoken.security.SecurityException;
@@ -32,7 +33,7 @@ public class JwtTokenProvider {
     }
 
     //토큰생성
-    public String createToken(String username) {
+    public String createToken(String username, UserRole role) {
         Claims claims = Jwts.claims()
                 .subject(username)
                 .build();

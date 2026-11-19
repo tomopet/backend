@@ -2,6 +2,7 @@ package com.nap.tomopet.domain.user.service;
 
 import com.nap.tomopet.domain.user.entity.User;
 import com.nap.tomopet.domain.user.repository.UserRepository;
+import com.nap.tomopet.global.security.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
 
 
     //회원가입 서비스 로직
@@ -42,10 +44,9 @@ public class UserService {
 
     @Transactional
     public String login(String username, String password) {
-
-        //username을 사용해 유저 조회
+        System.out.print(username+"이 요청도ㅛㅣㅁ");//username을 사용해 유저 조회
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 아이디 입니다."));
+                .orElseThrow(() -> new IllegalArgumentException(username+ "은존재하지 않는 아이디 입니다."));
 
 
         //암호화된 비밀번호와 입력된 비밀번호가 일치하는지 비교
@@ -53,7 +54,8 @@ public class UserService {
             throw new IllegalArgumentException("비밀번호가 일치하지 않습니다.");
         }
 
-        return "로그인 성공";
+        String token = jwtTokenProvider.createToken(user.getUsername(), user.getRole());
+        return token;
     }
 
 
